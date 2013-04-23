@@ -1,0 +1,9 @@
+{
+  "name": "bootstrap-responsive-dropdown",
+  "version": "0.0.0",
+  "dependencies": {
+    "bootstrap": "2.3.1",
+    "bootstrap.css": "2.1.1",
+    "jquery": "1.9.1"
+  }
+}

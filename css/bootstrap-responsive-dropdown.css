@@ -1,0 +1,12 @@
+.modal-body .dropdown-menu {
+  position: relative;
+  width: 100%;
+  border: none;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+}
+.modal-body .dropdown-menu a {
+  line-height: 35px;
+  font-size: 200%;
+}
