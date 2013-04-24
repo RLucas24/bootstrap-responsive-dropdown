@@ -5,8 +5,8 @@
   -webkit-box-shadow: none;
      -moz-box-shadow: none;
           box-shadow: none;
+  font-size: 150%;
 }
 .modal-body .dropdown-menu a {
   line-height: 35px;
-  font-size: 200%;
 }
