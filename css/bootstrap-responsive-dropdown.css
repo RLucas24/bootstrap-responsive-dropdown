@@ -1,6 +1,7 @@
 .modal-body .dropdown-menu {
   position: relative;
   width: 100%;
+
   border: none;
   -webkit-box-shadow: none;
      -moz-box-shadow: none;
@@ -10,3 +11,17 @@
 .modal-body .dropdown-menu a {
   line-height: 35px;
 }
+
+@media (max-width: 767px) {
+  .modal.modal-overflow {
+    bottom: 1%;
+  }
+  .modal-header {
+    padding: 0 10px;
+  }
+
+  .modal-body.open {
+    padding: 0;
+  }
+}
+
