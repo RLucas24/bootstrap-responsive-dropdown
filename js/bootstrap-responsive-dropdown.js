@@ -38,6 +38,9 @@
         if ( $(window).width() < 768 ) {
           modalMenu($parent)
         }
+        else if( $parent.css('overflow') === 'hidden') {
+          absoluteMenu($parent)
+        }
       }
 
       $this.focus()
@@ -90,7 +93,17 @@
 
   function clearMenus() {
     $(toggle).each(function () {
-      getParent($(this)).removeClass('open')
+      var $parent = getParent($(this))
+
+      // restore menu if it was absolutely positioned
+      var $menu = $parent.data('absolute-menu')
+      if($menu) {
+        $menu
+          .css({ display: 'none' })
+          .appendTo($parent)
+      }
+
+      $parent.removeClass('open')
     })
   }
 
@@ -121,12 +134,12 @@
 
     var clicked;
     $menu
+      .appendTo($modal.find('.modal-body'))
       .find('a').attr('data-dismiss', 'modal')
       .on('click', function(ev) {
         clicked = $(ev.target)
       })
 
-    $menu.appendTo($modal.find('.modal-body'))
     $modal.modal()
 
     // restore the menu when the modal is closed
@@ -136,6 +149,21 @@
 
       if(clicked) { clicked.click() }
     })
+  }
+
+  function absoluteMenu($parent) {
+    var $menu = $parent.find('.dropdown-menu')
+
+    var offset = $parent.offset()
+    $menu.css({
+      display: 'inline',
+      position: 'absolute',
+      top: offset.top + $parent.outerHeight(),
+      left: offset.left
+    })
+    .appendTo($('body'))
+
+    $parent.data('absolute-menu', $menu)
   }
 
   /* DROPDOWN PLUGIN DEFINITION
@@ -154,6 +182,9 @@
 
   $.fn.dropdown.Constructor = Dropdown
 
+  $.fn.clearMenus = function () {
+    clearMenus()
+  }
 
  /* DROPDOWN NO CONFLICT
   * ==================== */
