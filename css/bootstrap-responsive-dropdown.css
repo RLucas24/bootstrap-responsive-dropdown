@@ -12,6 +12,10 @@
   line-height: 35px;
 }
 
+.absolute-menu {
+  z-index: 2000;
+}
+
 @media (max-width: 767px) {
   .modal.modal-overflow {
     bottom: 1%;

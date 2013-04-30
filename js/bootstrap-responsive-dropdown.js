@@ -100,6 +100,7 @@
       if($menu) {
         $menu
           .css({ display: 'none' })
+          .removeClass('absolute-menu')
           .appendTo($parent)
       }
 
@@ -161,6 +162,7 @@
       top: offset.top + $parent.outerHeight(),
       left: offset.left
     })
+    .addClass('absolute-menu')
     .appendTo($('body'))
 
     $parent.data('absolute-menu', $menu)
