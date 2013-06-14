@@ -38,7 +38,8 @@
         if ( $(window).width() < 768 ) {
           modalMenu($parent)
         }
-        else if( $parent.css('overflow') === 'hidden') {
+        else if( $this.hasClass('absolute') ||
+          $parent.css('overflow') === 'hidden') {
           absoluteMenu($parent)
         }
       }
@@ -106,6 +107,9 @@
 
       $parent.removeClass('open')
     })
+
+    // clear orphaned absolute menus if needed
+    $('.dropdown-menu.absolute-menu').remove()
   }
 
   function getParent($this) {
@@ -156,14 +160,22 @@
     var $menu = $parent.find('.dropdown-menu')
 
     var offset = $parent.offset()
-    $menu.css({
+    var style = {
       display: 'inline',
       position: 'absolute',
       top: offset.top + $parent.outerHeight(),
-      left: offset.left
-    })
-    .addClass('absolute-menu')
-    .appendTo($('body'))
+    }
+
+    if($menu.hasClass('pull-right')) {
+      style.right = $(window).width() - offset.left - $parent.outerWidth()
+    }
+    else {
+      style.left = offset.left
+    }
+
+    $menu.css(style)
+      .addClass('absolute-menu')
+      .appendTo($('body'))
 
     $parent.data('absolute-menu', $menu)
   }
