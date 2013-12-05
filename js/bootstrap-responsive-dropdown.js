@@ -32,8 +32,6 @@
       clearMenus()
 
       if (!isActive) {
-        $parent.toggleClass('open')
-
         // display dropdown as a modal if the screen is small
         if ( $(window).width() < 768 ) {
           modalMenu($parent)
@@ -42,6 +40,8 @@
           $parent.css('overflow') === 'hidden') {
           absoluteMenu($parent)
         }
+
+        $parent.toggleClass('open')
       }
 
       $this.focus()
